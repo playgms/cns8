@@ -1,25 +1,52 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Diffie-Hellman Key Exchange</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diffie-Hellman Key Exchange</title>
+    
+    <script src="script.js"></script>
+    <style>
+        div {
+            width:600px;
+            border: 1px solid black; 
+            margin:10px;
+        }
+        button{
+            margin-left: 100px;
+        }
+    </style>
 </head>
 <body>
-    <script>
-        let p = BigInt(prompt("Enter the value of p"));
-        let g = BigInt(prompt("Enter the value of g"));
-        let a = BigInt(prompt("Enter Alice's private key a"));
-        let b = BigInt(prompt("Enter Bob's private key b"));
-        let A = (g ** a) % p;
-        let B = (g ** b) % p;
-        let s1 = (B ** a) % p;
-        let s2 = (A ** b) % p;
-        document.write("value of p is "+p+"<br>");
-        document.write("value of g is "+g+"<br>");
-        document.write("value of a is "+a+"<br>");
-        document.write("value of b is "+b+"<br>");
-        document.write("Alice's public value (A): " + A + "<br>");
-        document.write("Bob's public value (B): " + B + "<br>");
-        document.write("Secret key for Alice: " + s1 + "<br>");
-        document.write("Secret key for Bob: " + s2 + "<br>");
-    </script>
+    <h1>Diffie-Hellman Key Exchange</h1>
+    <div class="inputValue">
+        <h2>Enter Values</h2>
+        <label for="alpha">Alpha (α): </label> <!--alt 224-->
+        <input type="number" id="alpha" value=""><br><br>
+        <label for="q">Prime Number (q): </label>
+        <input type="number" id="q" value="">
+        <h2 id="inputResult"></h2><br>
+        
+    </div>
+
+    <div class="User1">
+        <h2>User 1</h2>
+        <label for="Xa">User 1's Private key (Xa): </label>
+        <input type="number" id="Xa" value=""><br><br>
+    </div>
+    <div class="User2">
+        <h2>User 2</h2>
+        <label for="Xb">User 2's Private key (Xb): </label>
+        <input type="number" id="Xb" value=""><br><br>
+    </div>
+    <button onclick="generateKeys()">Generate Keys and Compute Shared Secret</button><br><br>
+
+    <div>
+        <p>Public Key of A (Ya): <span id="Ya"></span></p>
+        <p>Public Key of B (Yb): <span id="Yb"></span></p>
+        <p>Shared Secret Key (Ka): <span id="Ka"></span></p>
+        <p>Shared Secret Key (Kb): <span id="Kb"></span></p>
+    </div>
+    <h2 id="result"></h2>
 </body>
 </html>
